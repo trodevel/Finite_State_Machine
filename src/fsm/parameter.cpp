@@ -13,3 +13,5 @@ Param::Param( param_type_e type, const std::string & value ):
         type_( type ), value_( value )
 {
 }
+
+NAMESPACE_FSM_END
