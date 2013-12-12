@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <map>          // map in State
 
 #include "parameter.h"      // Param
 
@@ -38,6 +39,14 @@ public:
     std::vector<Action> actions_;   // optional actions to perform
 };
 
+class State
+{
+public:
+public:
+    typedef std::map< std::string, OnSignal > MapSignalToHandler;
+
+    MapSignalToHandler  map_;       // map with signal handlers
+};
 
 
 NAMESPACE_FSM_END
