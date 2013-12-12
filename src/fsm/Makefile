@@ -40,9 +40,9 @@ mandir =${prefix}/share/man
 man3dir = ${mandir}/man3
 pkgconfigdir = ${libdir}/pkgconfig
 
-OBJC = parameter.o
+OBJC = parameter.o fsm.o
 
-PIC_OBJC = parameter.lo
+PIC_OBJC = parameter.lo fsm.lo
 
 # to use the asm code: make OBJA=match.o, PIC_OBJA=match.lo
 OBJA =
