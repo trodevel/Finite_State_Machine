@@ -6,6 +6,10 @@
 
 #include "../types.h"              // uint32
 
+#include "namespace_fsm.h"  // NAMESPACE_FSM_START
+
+NAMESPACE_FSM_START
+
 class ParserI
 {
 public:
@@ -14,5 +18,7 @@ public:
 public:
     virtual bool parse() = 0;
 };
+
+NAMESPACE_FSM_END
 
 #endif  // ParserI_H
