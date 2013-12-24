@@ -7,7 +7,7 @@
 #include <vector>
 #include <iostream>             // std::ostream
 
-#include "../types.h"           // uint32
+#include "../utils/types.h"     // uint32
 
 #include "namespace_fsm.h"  // NAMESPACE_FSM_START
 
