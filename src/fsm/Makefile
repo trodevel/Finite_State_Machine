@@ -62,7 +62,7 @@ mandir =${prefix}/share/man
 man3dir = ${mandir}/man3
 pkgconfigdir = ${libdir}/pkgconfig
 
-OBJC = parameter.o fsm.o
+OBJC = parameter.o fsm.o loader.o
 
 PIC_OBJC = parameter.lo fsm.lo
 
