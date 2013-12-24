@@ -1,6 +1,26 @@
 # Makefile for libfsm
 # Copyright (C) 2013 Sergey Kolevatov
 
+
+###################################################################
+
+BOOST_PATH := $(shell echo $$BOOST_PATH)
+
+ifeq (,$(BOOST_PATH))
+    $(error 'please use define path to boost $$BOOST_PATH')
+endif
+
+###################################################################
+
+BOOST_LIB_SYSTEM := libboost-system.a
+BOOST_LIB_THREAD := libboost-thread.a
+
+
+BOOST_INC=$(BOOST_PATH)/include
+BOOST_LIB=$(BOOST_PATH)/lib
+
+###################################################################
+
 LIBNAME=libfsm
 
 CC=gcc
@@ -16,6 +36,8 @@ LDFLAGS= -L. libfsm.a
 TEST_LDFLAGS=-L. libfsm.a
 LDSHARED=gcc
 CPP=gcc -E
+INCL = -I$(BOOST_INC) -I.
+
 
 STATICLIB=libfsm.a
 SHAREDLIB=
@@ -76,9 +98,9 @@ libfsm.a: $(OBJS)
 	$(AR) $@ $(OBJS)
 	-@ ($(RANLIB) $@ || true) >/dev/null 2>&1
 
-%o.: %.cpp
+%.o: %.cpp
 	-@mkdir objs 2>/dev/null || test -d objs
-	$(CC) $(SFLAGS) -DPIC -c -o objs/$*.o $<
+	$(CC) $(CFLAGS) -DPIC -c -o objs/$*.o $< $(INCL)
 	-@mv objs/$*.o $@
 
 $(SHAREDLIBV): $(PIC_OBJS)
