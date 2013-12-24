@@ -13,8 +13,9 @@
 
 #include <sstream>                  // std::ostringstream
 
-#include <boost/lexical_cast.h>     // lexical_cast
+#include <boost/lexical_cast.hpp>       // lexical_cast
 #include "../utils/string_utils.h"      // remove_comments
+#include "../utils/tokenizer.h"         // tokenize_to_vector
 
 NAMESPACE_FSM_START
 
