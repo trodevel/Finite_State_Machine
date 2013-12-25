@@ -105,6 +105,11 @@ bool Loader::is_script_read() const
     return is_script_read_;
 }
 
+const std::vector<InputLine> & Loader::get_script() const
+{
+    return script_;
+}
+
 void Loader::handle_version( const InputLine & l )
 {
     // format: $ver version
