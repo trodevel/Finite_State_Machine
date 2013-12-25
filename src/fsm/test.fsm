@@ -1,0 +1,6 @@
+# test FSM
+# DC26
+
+$ver 100
+
+$include "generic.fsm"
