@@ -16,6 +16,7 @@
 #include <boost/lexical_cast.hpp>       // lexical_cast
 #include "../utils/string_utils.h"      // remove_comments
 #include "../utils/tokenizer.h"         // tokenize_to_vector
+#include "str_helper.h"                 // to_string
 
 NAMESPACE_FSM_START
 
@@ -29,23 +30,6 @@ Loader::Loader():
 }
 
 /* ********************************************************************************************* */
-
-std::string to_string( const InputLine &d )
-{
-    std::ostringstream s;
-
-    s << "{ " << d.filename << ":" << d.line_num << ": ";
-
-    for( int i = 0; i < ( int )d.tokens.size(); ++i )
-    {
-        s << d.tokens[i] << " ";
-    }
-
-    s << "}";
-
-    return s.str();
-}
-
 
 // implementation
 
