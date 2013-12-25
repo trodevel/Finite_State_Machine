@@ -78,7 +78,7 @@ EXE=
 
 #vpath %.cpp .
 
-SRCC = parameter.cpp fsm.cpp loader.cpp
+SRCC = parameter.cpp fsm.cpp loader.cpp str_helper.cpp
 OBJS = $(patsubst %.cpp,$(OBJDIR)/%.o,$(SRCC))
 
 #$(OBJS): | $(OBJDIR)
