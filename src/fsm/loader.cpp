@@ -58,7 +58,7 @@ InputLine Loader::create_input_line( const std::string & str, const std::string 
     l.line_num  = line_number;
     l.filename  = filename;
 
-    std::cout << l << std::endl;
+    std::cout << to_string( l ) << std::endl;
 
     return l;
 }
@@ -105,16 +105,16 @@ bool Loader::is_script_read() const
     return is_script_read_;
 }
 
-void Loader::handle_version( const InputLine & cl )
+void Loader::handle_version( const InputLine & l )
 {
     // format: $ver version
-    if( cl.tokens.size() < 2 )
-        throw_error( "expected 2 arguments", cl );
+    if( l.tokens.size() < 2 )
+        throw_error( "expected 2 arguments", l );
 
-    ver_    = boost::lexical_cast<uint32>( cl.tokens[1] );
+    ver_    = boost::lexical_cast<uint32>( l.tokens[1] );
 
     if( is_version_defined_ )
-        throw_error( "version is already defined", cl );
+        throw_error( "version is already defined", l );
 
     is_version_defined_    = true;
 }
@@ -194,16 +194,16 @@ bool Loader::include_file( const std::string & filename, const InputLine & l )
 
 /* ********************************************************************************************* */
 
-void Loader::throw_error( const std::string & msg, const InputLine & cl )
+void Loader::throw_error( const std::string & msg, const InputLine & l )
 {
-    throw_error( msg.c_str(), cl );
+    throw_error( msg.c_str(), l );
 }
 
-void Loader::throw_error( const char* msg, const InputLine & cl )
+void Loader::throw_error( const char* msg, const InputLine & l )
 {
     std::stringstream out;
 
-    out << msg << ", " << cl;
+    out << msg << ", " << to_string( l );
 
     printf( "ERROR: %s\n", out.str().c_str() );
 
