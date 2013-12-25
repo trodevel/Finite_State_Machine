@@ -24,8 +24,6 @@ public:
     uint32          line_num;
 };
 
-std::ostream& operator<< ( std::ostream& o, InputLine const &d );
-
 typedef std::vector< InputLine >  VectInputLine;
 
 NAMESPACE_FSM_END
