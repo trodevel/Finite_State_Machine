@@ -33,7 +33,7 @@ public:
 
 private:
 
-    void handle_version( const InputLine & cl );
+    void handle_version( const InputLine & l );
 
     bool add_to_script( const InputLine & l );
 
@@ -43,8 +43,8 @@ private:
     void read_file( const std::string & filename, const InputLine & l, VectStr & lines );
     bool process_lines( const VectStr & lines, const std::string & filename );
 
-    void throw_error( const std::string & msg, const InputLine & cl );
-    void throw_error( const char* msg, const InputLine & cl );
+    void throw_error( const std::string & msg, const InputLine & l );
+    void throw_error( const char* msg, const InputLine & l );
 
 private:
     bool                        is_version_defined_;
