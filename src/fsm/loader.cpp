@@ -2,7 +2,6 @@
 
 #include "loader.h"
 
-#define TOK_ENDSCRIPT   "endscript"
 #define TOK_INCLUDE     "$include"
 #define TOK_VER         "$ver"
 
@@ -24,7 +23,6 @@ NAMESPACE_FSM_START
 
 Loader::Loader():
     is_version_defined_( false ),
-    is_script_read_( false ),
     ver_( 0 )
 {
 }
@@ -64,13 +62,6 @@ bool Loader::add_to_script( const InputLine & l )
         return true;
     }
 
-    if( cmd == TOK_ENDSCRIPT )
-    {
-        script_.push_back( l );
-        is_script_read_ = true;
-        return true;
-    }
-
     if( cmd == TOK_INCLUDE )
     {
         if( l.tokens.size() < 2 )
@@ -82,11 +73,6 @@ bool Loader::add_to_script( const InputLine & l )
     script_.push_back( l );
 
     return true;
-}
-
-bool Loader::is_script_read() const
-{
-    return is_script_read_;
 }
 
 const std::vector<InputLine> & Loader::get_script() const
@@ -152,14 +138,9 @@ bool Loader::process_lines( const VectStr & lines, const std::string & filename 
         InputLine l = create_input_line( line2, filename, i );
 
         add_to_script( l );
-
-        bool should_stop = is_script_read();
-
-        if( should_stop )
-            return true;
     }
 
-    return false;
+    return true;
 }
 
 bool Loader::load_file( const std::string & filename )

@@ -27,7 +27,6 @@ private:
 
 public:
     bool load_file( const std::string & filename );
-    bool is_script_read() const;
 
     const std::vector<InputLine> & get_script() const;
 
@@ -48,7 +47,6 @@ private:
 
 private:
     bool                        is_version_defined_;
-    bool                        is_script_read_;
 
     uint32                      ver_;
 
