@@ -29,13 +29,6 @@ int main( int argc, const char** argv )
         return 0;
     }
 
-    if( !l.is_script_read() )
-    {
-        printf( "ERROR: script is incomplete\n" );
-
-        return 0;
-    }
-
     const std::vector<fsm::InputLine> &scr   = l.get_script();
 
     printf( "done, %d lines read\n", scr.size() );
