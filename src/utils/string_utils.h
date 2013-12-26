@@ -17,3 +17,13 @@ std::string remove_comments( const std::string & str, const std::string::value_t
 
     return trim( res );
 }
+
+// @descr removes first and last symbol from a string
+std::string remove_quotes( const std::string & str, const std::string::value_type = '#' )
+{
+    if( str.length() <= 2 )
+        return str;
+
+    return str.substr( 1, str.length() - 2 );
+}
+
