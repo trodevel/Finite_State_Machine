@@ -14,7 +14,7 @@
 #include <sstream>                  // std::ostringstream
 
 #include <boost/lexical_cast.hpp>       // lexical_cast
-#include "../utils/string_utils.h"      // remove_comments
+#include "../utils/string_utils.h"      // remove_comments, remove_quotes
 #include "../utils/tokenizer.h"         // tokenize_to_vector
 #include "str_helper.h"                 // to_string
 
@@ -76,7 +76,7 @@ bool Loader::add_to_script( const InputLine & l )
         if( l.tokens.size() < 2 )
             throw_error( "expected 2 arguments", l );
 
-        return include_file( l.tokens[1], l );
+        return include_file( remove_quotes( l.tokens[1] ), l );
     }
 
     script_.push_back( l );
@@ -175,6 +175,8 @@ bool Loader::load_file( const std::string & filename )
 bool Loader::include_file( const std::string & filename, const InputLine & l )
 {
     VectStr lines;
+
+    printf( "filename %s\n", filename.c_str() );
 
     read_file( filename, l, lines );
 
