@@ -5,6 +5,7 @@
 #define ParserI_H
 
 #include "../types.h"              // uint32
+#include "input_line.h"             // InputLine
 
 #include "namespace_fsm.h"  // NAMESPACE_FSM_START
 
@@ -16,7 +17,7 @@ public:
     virtual ~ParserI() {};
 
 public:
-    virtual bool parse() = 0;
+    virtual bool parse( const std::vector<InputLine> & v ) = 0;
 };
 
 NAMESPACE_FSM_END
