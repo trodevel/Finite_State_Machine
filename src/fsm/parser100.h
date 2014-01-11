@@ -5,6 +5,7 @@
 
 #include "fsm.h"                // Fsm, Token
 #include "parser_i.h"           // ParserI
+#include "data_types.h"         // Action, OnSignal
 
 #include "namespace_fsm.h"      // NAMESPACE_FSM_START
 
@@ -42,9 +43,13 @@ private:
     void throw_error( const std::string & msg, const InputLine & l );
     void throw_error( const char* msg, const InputLine & l );
 
+    Param str_to_param( const std::string & s ) const;
 
 private:
     Fsm   & h_;
+
+    OnSignal    temp_on_signal_;
+    State       temp_state_;
 };
 
 NAMESPACE_FSM_END
