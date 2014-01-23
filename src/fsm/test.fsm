@@ -4,3 +4,5 @@
 $ver 100
 
 $include "generic.fsm"
+
+const GREET "Hello World"
