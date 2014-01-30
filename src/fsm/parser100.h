@@ -5,7 +5,7 @@
 
 #include "fsm.h"                // Fsm, Token
 #include "parser_i.h"           // ParserI
-#include "data_types.h"         // Action, OnSignal
+#include "data_types.h"         // Action, SignalHandler
 
 #include "namespace_fsm.h"      // NAMESPACE_FSM_START
 
@@ -61,7 +61,7 @@ private:
 private:
     Fsm             & h_;
 
-    OnSignal        temp_signal_handler_;
+    SignalHandler        temp_signal_handler_;
     State           temp_state_;
 
     MapStrToStr     const_str_;

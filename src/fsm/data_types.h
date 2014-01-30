@@ -30,7 +30,7 @@ public:
     std::vector<Param>  pars_;  // optional parameters
 };
 
-class OnSignal
+class SignalHandler
 {
 public:
 
@@ -43,7 +43,7 @@ class State
 {
 public:
 public:
-    typedef std::map< std::string, OnSignal > MapSignalToHandler;
+    typedef std::map< std::string, SignalHandler > MapSignalToHandler;
 
     std::string         name_;      // name of the state
     MapSignalToHandler  map_;       // map with signal handlers
