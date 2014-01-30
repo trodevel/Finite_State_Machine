@@ -37,7 +37,7 @@ private:
     void handle_end( const InputLine & l );
 
     void complete_current_state();
-    void complete_current_signal();
+    void complete_current_signal_handler();
 
 
     void throw_error( const std::string & msg, const InputLine & l );
@@ -45,11 +45,27 @@ private:
 
     Param str_to_param( const std::string & s ) const;
 
-private:
-    Fsm   & h_;
+    bool has_const( const std::string & s ) const;
+    bool add_const( const std::string & s, const std::string & v );
+    bool add_const( const std::string & s, int32 val );
+    bool add_const( const std::string & s, double val );
 
-    OnSignal    temp_on_signal_;
-    State       temp_state_;
+private:
+    typedef std::map< std::string, std::string >    MapStrToStr;
+    typedef std::map< std::string, int32 >          MapStrToInt;
+    typedef std::map< std::string, double >         MapStrToDouble;
+
+
+private:
+    Fsm             & h_;
+
+    OnSignal        temp_signal_handler_;
+    State           temp_state_;
+
+    MapStrToStr     const_str_;
+    MapStrToInt     const_int_;
+    MapStrToDouble  const_double_;
+
 };
 
 NAMESPACE_FSM_END
