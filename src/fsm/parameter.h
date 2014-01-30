@@ -20,10 +20,14 @@ class Param
 public:
     Param();
     Param( param_type_e type, const std::string & value );
+    Param( param_type_e type, const int32 value );
+    Param( param_type_e type, const double value );
 
 public:
     param_type_e    type_;
     std::string     value_;
+    int32           val_int_;
+    double          val_float_;
 };
 
 NAMESPACE_FSM_END
