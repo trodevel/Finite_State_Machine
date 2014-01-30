@@ -14,6 +14,8 @@ public:
     typedef std::map< std::string, int32 >         MapStrToInt;
     typedef std::map< std::string, double >         MapStrToDouble;
 
+    typedef std::map< std::string, State >          MapStrToState;
+
 public:
 
     Fsm();
@@ -37,10 +39,15 @@ public:
     bool add_const( const std::string & s, int32 val );
     bool add_const( const std::string & s, double val );
 
+    bool has_state( const std::string & name );
+    bool add_state( const State & s );
+
 private:
     MapStrToStr     const_str_;
     MapStrToInt     const_int_;
     MapStrToDouble  const_double_;
+
+    MapStrToState   states_;
 
 
 };

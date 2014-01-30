@@ -74,6 +74,17 @@ bool Fsm::add_const( const std::string & s, double val )
     return true;
 }
 
+bool Fsm::has_state( const std::string & name )
+{
+    return states_.count( name ) == 0;
+}
+bool Fsm::add_state( const State & s )
+{
+    states_[ s.name_ ]  = s;
+    return true;
+}
+
+
 
 NAMESPACE_FSM_END
 
