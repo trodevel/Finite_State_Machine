@@ -30,7 +30,7 @@ private:
     void handle_const( const InputLine & l );
     void handle_finitestatemachine( const InputLine & l );
     void handle_state( const InputLine & l );
-    void handle_signal( const InputLine & l );
+    void handle_signal_handler( const InputLine & l );
     void handle_nextstate( const InputLine & l );
     void handle_sendsignal( const InputLine & l );
     void handle_exit( const InputLine & l );
@@ -49,6 +49,8 @@ private:
     bool add_const( const std::string & s, const std::string & v );
     bool add_const( const std::string & s, int32 val );
     bool add_const( const std::string & s, double val );
+
+    Param const_to_param( const std::string &s ) const;
 
 private:
     typedef std::map< std::string, std::string >    MapStrToStr;
