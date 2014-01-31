@@ -1,9 +1,13 @@
 // DC12
 
+#ifndef FSM_H
+#define FSM_H
+
 #include "fsm_i.h"    // FsmI
 
 #include <map>          // std::map
 #include "../utils/types.h" // int32
+#include "data_types.h"     // State
 
 NAMESPACE_FSM_START
 
@@ -43,3 +47,4 @@ private:
 
 NAMESPACE_FSM_END
 
+#endif // FSM_H

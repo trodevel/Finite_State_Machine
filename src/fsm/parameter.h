@@ -1,8 +1,13 @@
 // DC4
 
+#ifndef PARAMETER_H
+#define PARAMETER_H
+
+
 #include <string>
 #include <vector>
 
+#include "../utils/types.h"     // int32
 #include "namespace_fsm.h" // NAMESPACE_FSM_START
 
 NAMESPACE_FSM_START
@@ -32,3 +37,4 @@ public:
 
 NAMESPACE_FSM_END
 
+#endif // PARAMETER_H

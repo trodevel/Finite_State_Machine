@@ -1,5 +1,8 @@
 // DC4
 
+#ifndef FSM_I_H
+#define FSM_I_H
+
 #include <string>
 #include <vector>
 
@@ -33,3 +36,4 @@ public:
 
 NAMESPACE_FSM_END
 
+#endif // FSM_I_H

@@ -1,5 +1,9 @@
 // DC4
 
+#ifndef DATA_TYPES_H
+#define DATA_TYPES_H
+
+
 #include <string>
 #include <vector>
 #include <map>          // map in State
@@ -52,3 +56,4 @@ public:
 
 NAMESPACE_FSM_END
 
+#endif  // DATA_TYPES_H
