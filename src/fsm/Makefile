@@ -26,13 +26,17 @@ BOOST_LIB=$(BOOST_PATH)/lib
 
 ###################################################################
 
+LIBNAME=libfsm
+
+###################################################################
+
 ifeq "$(MODE)" "debug"
     OBJDIR=./DBG
     BINDIR=./DBG
 
     CFLAGS := -Wall -std=c++0x -ggdb -g3
     LFLAGS := -Wall -lstdc++ -lrt -ldl -lm -g
-    LFLAGS_TEST := -Wall -lstdc++ -lrt -ldl -lm -g -L. $(BINDIR)/libfsm.a
+    LFLAGS_TEST := -Wall -lstdc++ -lrt -ldl -lm -g -L. $(BINDIR)/$(LIBNAME).a
 
     TARGET=example
 else
@@ -41,7 +45,7 @@ else
 
     CFLAGS := -Wall -std=c++0x
     LFLAGS := -Wall -lstdc++ -lrt -ldl -lm
-    LFLAGS_TEST := -Wall -lstdc++ -lrt -ldl -lm -L. $(BINDIR)/libfsm.a
+    LFLAGS_TEST := -Wall -lstdc++ -lrt -ldl -lm -L. $(BINDIR)/$(LIBNAME).a
 
     TARGET=example
 endif
@@ -53,8 +57,6 @@ CDBG = -g $(CWARN) -fno-inline
 
 ###################################################################
 
-LIBNAME=libfsm
-
 CC=gcc
 
 LDSHARED=gcc
@@ -62,7 +64,7 @@ CPP=gcc -E
 INCL = -I$(BOOST_INC) -I.
 
 
-STATICLIB=libfsm.a
+STATICLIB=$(LIBNAME).a
 SHAREDLIB=
 SHAREDLIBV=
 SHAREDLIBM=
