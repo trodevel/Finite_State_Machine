@@ -6,3 +6,14 @@ $ver 100
 $include "generic.fsm"
 
 const GREET "Hello World"
+
+finitestatemachine
+
+state IDLE
+    signal T_5
+        a say "Hello"
+        ns IDLE
+    signal T_20
+        s drop_call
+        exit
+end
