@@ -1,4 +1,5 @@
 #include "loader.h"
+#include "parser_factory.h"     // ParserFactory
 
 #include <cstdio>
 #include <string>
@@ -32,6 +33,17 @@ int main( int argc, const char** argv )
     const std::vector<fsm::InputLine> &scr   = l.get_script();
 
     printf( "done, %d lines read\n", scr.size() );
+
+    fsm::Fsm        fsm;
+
+    fsm::ParserI    * parser = fsm::ParserFactory::create( FSM_VERSION_100, fsm );
+
+    if( parser == 0L )
+    {
+        printf( "ERROR: cannot create parser\n" );
+
+        return 0;
+    }
 
     return 0;
 }
