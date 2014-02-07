@@ -3,6 +3,7 @@
 #include "parser100.h"
 
 #include "../utils/number_format.h"     // is_number_int
+#include "str_helper.h"                 // to_string
 
 #define TOK_A           "a"
 #define TOK_ACT         "act"
@@ -330,7 +331,7 @@ void Parser100::throw_error( const char* msg, const InputLine & l )
 {
     std::stringstream out;
 
-    out << msg << ", " << l;
+    out << msg << ", " << to_string( l );
 
     printf( "ERROR: %s\n", out.str().c_str() );
 
@@ -406,15 +407,17 @@ Param Parser100::const_to_param( const std::string &s ) const
     Param res;
 
     if( const_str_.count( s ) )
-        return Param( PARTP_STR, const_str_[s] );
+        return Param( PARTP_STR, const_str_.find( s )->second );
 
     if( const_int_.count( s ) )
-        return Param( PARTP_INT, const_int_[s] );
+        return Param( PARTP_INT, const_int_.find( s )->second );
 
     if( const_double_.count( s ) )
-        return Param( PARTP_FLOAT, const_double_[s] );
+        return Param( PARTP_FLOAT, const_double_.find( s )->second );
 
     return res;
 }
+
+NAMESPACE_FSM_END
 
 /* ********************************************************************************************* */
