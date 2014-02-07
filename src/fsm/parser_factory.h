@@ -9,6 +9,7 @@
 
 NAMESPACE_FSM_START
 
+class Fsm;
 
 #define FSM_VERSION_100  ( 100 )    // current version of fsm - 1.0
 
