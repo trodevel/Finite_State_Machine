@@ -36,7 +36,7 @@ ifeq "$(MODE)" "debug"
 
     CFLAGS := -Wall -std=c++0x -ggdb -g3
     LFLAGS := -Wall -lstdc++ -lrt -ldl -lm -g
-    LFLAGS_TEST := -Wall -lstdc++ -lrt -ldl -lm -g -L. $(BINDIR)/$(LIBNAME).a $(BINDIR)/libutils.a
+    LFLAGS_TEST := -Wall -lstdc++ -lrt -ldl -g -L. $(BINDIR)/$(LIBNAME).a $(BINDIR)/libutils.a -lm
 
     TARGET=example
 else
@@ -45,7 +45,7 @@ else
 
     CFLAGS := -Wall -std=c++0x
     LFLAGS := -Wall -lstdc++ -lrt -ldl -lm
-    LFLAGS_TEST := -Wall -lstdc++ -lrt -ldl -lm -L. $(BINDIR)/$(LIBNAME).a $(BINDIR)/libutils.a
+    LFLAGS_TEST := -Wall -lstdc++ -lrt -ldl -L. $(BINDIR)/$(LIBNAME).a $(BINDIR)/libutils.a -lm
 
     TARGET=example
 endif
@@ -80,7 +80,7 @@ EXE=
 
 #vpath %.cpp .
 
-SRCC = parameter.cpp fsm.cpp loader.cpp str_helper.cpp
+SRCC = parameter.cpp fsm.cpp loader.cpp str_helper.cpp parser_factory.cpp parser100.cpp
 OBJS = $(patsubst %.cpp,$(OBJDIR)/%.o,$(SRCC))
 
 #$(OBJS): | $(OBJDIR)
