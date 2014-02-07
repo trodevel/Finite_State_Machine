@@ -4,7 +4,7 @@
 #ifndef ParserI_H
 #define ParserI_H
 
-#include "../types.h"              // uint32
+#include "../utils/types.h"         // uint32
 #include "input_line.h"             // InputLine
 
 #include "namespace_fsm.h"  // NAMESPACE_FSM_START
