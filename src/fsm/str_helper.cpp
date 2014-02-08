@@ -5,6 +5,9 @@
 #include <sstream>                  // std::ostringstream
 
 #include "input_line.h"             // Direction
+#include "parameter.h"              // Param
+#include "data_types.h"             // Action, SignalHandler, State
+#include "fsm.h"                    // Fsm
 
 NAMESPACE_FSM_START
 
@@ -24,6 +27,110 @@ std::string to_string( const InputLine &d )
 
     return s.str();
 }
+
+std::string to_string( const Fsm & l )
+{
+    std::ostringstream s;
+    return s.str();
+}
+std::string to_string( const State & l )
+{
+    std::ostringstream s;
+    return s.str();
+}
+std::string to_string( const SignalHandler & l )
+{
+    std::ostringstream s;
+    return s.str();
+}
+
+std::string to_string( const std::vector<Param> & l )
+{
+    std::ostringstream s;
+
+    std::vector<Param>::const_iterator it = l.begin();
+    std::vector<Param>::const_iterator it_end = l.end();
+
+    for( ; it != it_end; ++it )
+    {
+        s << to_string( *it ) << " ";
+    }
+
+    return s.str();
+}
+
+std::string to_string( const Action & l )
+{
+    std::ostringstream s;
+
+    std::string act = to_string( l.type_ );
+
+    switch( l.type_ )
+    {
+    case ACT_CALL:
+        s << act << " " << l.name_ << " " << to_string( l.pars_ );
+        break;
+    case ACT_SIGNAL:
+        s << act << " " << l.name_;
+        break;
+    case ACT_NEXT_STATE:
+        s << act << " " << l.name_;
+        break;
+    case ACT_EXIT:
+        s << act;
+        break;
+    default:
+        break;
+    }
+
+    return s.str();
+}
+
+
+std::string to_string( const Param & l )
+{
+    std::ostringstream s;
+
+    switch( l.type_ )
+    {
+    case PARTP_INT:
+        s << l.val_int_;
+        break;
+    case PARTP_FLOAT:
+        s << l.val_float_;
+        break;
+    case PARTP_STR:
+        s << "'" << l.value_ << "'";
+        break;
+    default:
+        break;
+    }
+
+    return s.str();
+}
+
+std::string to_string( const action_type_e l )
+{
+    switch( l )
+    {
+    case ACT_UNDEF:
+        return "UNDEF";
+    case ACT_CALL:
+        return "CALL";
+    case ACT_SIGNAL:
+        return "SIGNAL";
+    case ACT_NEXT_STATE:
+        return "NEXT_STATE";
+    case ACT_EXIT:
+        return "EXIT";
+    default:
+        break;
+    };
+
+    return "";
+}
+
+
 
 NAMESPACE_FSM_END
 
