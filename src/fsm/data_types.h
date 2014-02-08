@@ -8,20 +8,12 @@
 #include <vector>
 #include <map>          // map in State
 
-#include "parameter.h"      // Param
+#include "parameter.h"          // Param
+#include "data_types_enums.h"   // action_type_e
 
 #include "namespace_fsm.h"  // NAMESPACE_FSM_START
 
 NAMESPACE_FSM_START
-
-enum action_type_e
-{
-    ACT_UNDEF   = 0,
-    ACT_CALL,
-    ACT_SIGNAL,
-    ACT_NEXT_STATE,
-    ACT_EXIT
-};
 
 class Action
 {
