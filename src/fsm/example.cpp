@@ -1,8 +1,11 @@
-#include "loader.h"
-#include "parser_factory.h"     // ParserFactory
 
 #include <cstdio>
 #include <string>
+#include <boost/shared_ptr.hpp>
+
+#include "loader.h"
+#include "parser_factory.h"     // ParserFactory
+#include "fsm.h"                // Fsm
 
 int main( int argc, const char** argv )
 {
@@ -36,7 +39,7 @@ int main( int argc, const char** argv )
 
     fsm::Fsm        fsm;
 
-    fsm::ParserI    * parser = fsm::ParserFactory::create( FSM_VERSION_100, fsm );
+    boost::shared_ptr< fsm::ParserI >   parser( fsm::ParserFactory::create( FSM_VERSION_100, fsm ) );
 
     if( parser == 0L )
     {
@@ -44,6 +47,17 @@ int main( int argc, const char** argv )
 
         return 0;
     }
+
+    bool parse_res  = parser->parse( scr );
+
+    if( parse_res == false )
+    {
+        printf( "ERROR: cannot parse file\n" );
+
+        return 0;
+    }
+
+    printf( "parsed - OK\n" );
 
     return 0;
 }
