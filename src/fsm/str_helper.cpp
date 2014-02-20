@@ -27,6 +27,22 @@ std::string to_string2( const std::vector<T> & l )
     return s.str();
 }
 
+template <class T, class V>
+std::string to_string2( const std::map<T,V> & l )
+{
+    std::ostringstream s;
+
+    typename std::map<T,V>::const_iterator it = l.begin();
+    typename std::map<T,V>::const_iterator it_end = l.end();
+
+    for( ; it != it_end; ++it )
+    {
+        s << StrHelper::to_string( (*it).second ) << " ";
+    }
+
+    return s.str();
+}
+
 
 std::string StrHelper::to_string( const InputLine &d )
 {
@@ -47,16 +63,30 @@ std::string StrHelper::to_string( const InputLine &d )
 std::string StrHelper::to_string( const Fsm & l )
 {
     std::ostringstream s;
+
+    s << "fsm\n"
+            << to_string2( l.states_ )
+            << "\n";
+
     return s.str();
 }
 std::string StrHelper::to_string( const State & l )
 {
     std::ostringstream s;
+
+    s << "state '" << l.name_ << "'\n"
+            << to_string2( l.map_ )
+            << "\n";
+
     return s.str();
 }
 std::string StrHelper::to_string( const SignalHandler & l )
 {
     std::ostringstream s;
+
+    s << "on signal '" << l.name_ << "'\n"
+            << to_string2( l.actions_ );
+
     return s.str();
 }
 
