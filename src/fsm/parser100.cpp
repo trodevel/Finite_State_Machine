@@ -123,6 +123,7 @@ bool Parser100::parse( const std::vector<InputLine> & v )
             }
             else if ( p0 == TOK_END )
             {
+                complete_current_state();
                 state = END;
             }
             else
@@ -162,6 +163,8 @@ bool Parser100::parse( const std::vector<InputLine> & v )
             }
             else if ( p0 == TOK_END )
             {
+                complete_current_signal_handler();
+                complete_current_state();
                 state = END;
             }
             else
