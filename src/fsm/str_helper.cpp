@@ -75,7 +75,7 @@ std::string StrHelper::to_string( const State & l )
 {
     std::ostringstream s;
 
-    s << "state '" << l.name_ << "'\n"
+    s << "state '" << l.name_ << "', signals = " << l.map_.size() << "\n"
             << to_string2( l.map_ )
             << "\n";
 
@@ -85,8 +85,9 @@ std::string StrHelper::to_string( const SignalHandler & l )
 {
     std::ostringstream s;
 
-    s << "on signal '" << l.name_ << "'\n"
-            << to_string2( l.actions_ );
+    s << "on signal '" << l.name_ << "', actions = " << l.actions_.size() << "\n"
+            << to_string2( l.actions_ )
+            << "\n";
 
     return s.str();
 }
