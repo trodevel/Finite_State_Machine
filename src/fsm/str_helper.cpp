@@ -12,7 +12,7 @@
 NAMESPACE_FSM_START
 
 
-std::string to_string( const InputLine &d )
+std::string StrHelper::to_string( const InputLine &d )
 {
     std::ostringstream s;
 
@@ -28,23 +28,23 @@ std::string to_string( const InputLine &d )
     return s.str();
 }
 
-std::string to_string( const Fsm & l )
+std::string StrHelper::to_string( const Fsm & l )
 {
     std::ostringstream s;
     return s.str();
 }
-std::string to_string( const State & l )
+std::string StrHelper::to_string( const State & l )
 {
     std::ostringstream s;
     return s.str();
 }
-std::string to_string( const SignalHandler & l )
+std::string StrHelper::to_string( const SignalHandler & l )
 {
     std::ostringstream s;
     return s.str();
 }
 
-std::string to_string( const std::vector<Param> & l )
+std::string to_string2( const std::vector<Param> & l )
 {
     std::ostringstream s;
 
@@ -53,13 +53,13 @@ std::string to_string( const std::vector<Param> & l )
 
     for( ; it != it_end; ++it )
     {
-        s << to_string( *it ) << " ";
+        s << StrHelper::to_string( *it ) << " ";
     }
 
     return s.str();
 }
 
-std::string to_string( const Action & l )
+std::string StrHelper::to_string( const Action & l )
 {
     std::ostringstream s;
 
@@ -68,7 +68,7 @@ std::string to_string( const Action & l )
     switch( l.type_ )
     {
     case ACT_CALL:
-        s << act << " " << l.name_ << " " << to_string( l.pars_ );
+        s << act << " " << l.name_ << " " << to_string2( l.pars_ );
         break;
     case ACT_SIGNAL:
         s << act << " " << l.name_;
@@ -87,7 +87,7 @@ std::string to_string( const Action & l )
 }
 
 
-std::string to_string( const Param & l )
+std::string StrHelper::to_string( const Param & l )
 {
     std::ostringstream s;
 
@@ -109,7 +109,7 @@ std::string to_string( const Param & l )
     return s.str();
 }
 
-std::string to_string( const action_type_e l )
+std::string StrHelper::to_string( const action_type_e l )
 {
     switch( l )
     {
@@ -129,8 +129,6 @@ std::string to_string( const action_type_e l )
 
     return "";
 }
-
-
 
 NAMESPACE_FSM_END
 

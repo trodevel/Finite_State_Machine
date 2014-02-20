@@ -16,14 +16,19 @@ class SignalHandler;
 class Action;
 class Param;
 
-std::string to_string( const InputLine & l );
-std::string to_string( const Fsm & l );
-std::string to_string( const State & l );
-std::string to_string( const SignalHandler & l );
-std::string to_string( const Action & l );
-std::string to_string( const Param & l );
-std::string to_string( const action_type_e l );
+class StrHelper
+{
+public:
 
+static std::string to_string( const InputLine & l );
+static std::string to_string( const Fsm & l );
+static std::string to_string( const State & l );
+static std::string to_string( const SignalHandler & l );
+static std::string to_string( const Action & l );
+static std::string to_string( const Param & l );
+static std::string to_string( const action_type_e l );
+
+};
 
 NAMESPACE_FSM_END
 
