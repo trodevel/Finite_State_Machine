@@ -13,6 +13,8 @@ NAMESPACE_FSM_START
 
 class Fsm: virtual public FsmI
 {
+    friend class StrHelper;
+
 public:
     typedef std::map< std::string, State >          MapStrToState;
 
