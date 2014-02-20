@@ -11,6 +11,22 @@
 
 NAMESPACE_FSM_START
 
+template <class T>
+std::string to_string2( const std::vector<T> & l )
+{
+    std::ostringstream s;
+
+    typename std::vector<T>::const_iterator it = l.begin();
+    typename std::vector<T>::const_iterator it_end = l.end();
+
+    for( ; it != it_end; ++it )
+    {
+        s << StrHelper::to_string( *it ) << " ";
+    }
+
+    return s.str();
+}
+
 
 std::string StrHelper::to_string( const InputLine &d )
 {
@@ -41,21 +57,6 @@ std::string StrHelper::to_string( const State & l )
 std::string StrHelper::to_string( const SignalHandler & l )
 {
     std::ostringstream s;
-    return s.str();
-}
-
-std::string to_string2( const std::vector<Param> & l )
-{
-    std::ostringstream s;
-
-    std::vector<Param>::const_iterator it = l.begin();
-    std::vector<Param>::const_iterator it_end = l.end();
-
-    for( ; it != it_end; ++it )
-    {
-        s << StrHelper::to_string( *it ) << " ";
-    }
-
     return s.str();
 }
 
