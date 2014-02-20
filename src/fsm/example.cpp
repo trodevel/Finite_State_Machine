@@ -6,6 +6,7 @@
 #include "loader.h"
 #include "parser_factory.h"     // ParserFactory
 #include "fsm.h"                // Fsm
+#include "str_helper.h"         // StrHelper
 
 int main( int argc, const char** argv )
 {
@@ -58,6 +59,8 @@ int main( int argc, const char** argv )
     }
 
     printf( "parsed - OK\n" );
+
+    printf( "DEBUG:\n%s\n", fsm::StrHelper::to_string( fsm ).c_str() );
 
     return 0;
 }
