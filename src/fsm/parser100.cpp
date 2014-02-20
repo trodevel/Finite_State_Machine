@@ -3,7 +3,7 @@
 #include "parser100.h"
 
 #include "../utils/number_format.h"     // is_number_int
-#include "str_helper.h"                 // to_string
+#include "str_helper.h"                 // StrHelper
 
 #define TOK_A           "a"
 #define TOK_ACT         "act"
@@ -331,7 +331,7 @@ void Parser100::throw_error( const char* msg, const InputLine & l )
 {
     std::stringstream out;
 
-    out << msg << ", " << to_string( l );
+    out << msg << ", " << StrHelper::to_string( l );
 
     printf( "ERROR: %s\n", out.str().c_str() );
 

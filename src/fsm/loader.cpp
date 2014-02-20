@@ -15,7 +15,7 @@
 #include <boost/lexical_cast.hpp>       // lexical_cast
 #include "../utils/string_utils.h"      // remove_comments, remove_quotes
 #include "../utils/tokenizer.h"         // tokenize_to_vector
-#include "str_helper.h"                 // to_string
+#include "str_helper.h"                 // StrHelper
 
 NAMESPACE_FSM_START
 
@@ -40,7 +40,7 @@ InputLine Loader::create_input_line( const std::string & str, const std::string 
     l.line_num  = line_number;
     l.filename  = filename;
 
-    std::cout << to_string( l ) << std::endl;
+    std::cout << StrHelper::to_string( l ) << std::endl;
 
     return l;
 }
@@ -175,7 +175,7 @@ void Loader::throw_error( const char* msg, const InputLine & l )
 {
     std::stringstream out;
 
-    out << msg << ", " << to_string( l );
+    out << msg << ", " << StrHelper::to_string( l );
 
     printf( "ERROR: %s\n", out.str().c_str() );
 
