@@ -191,7 +191,7 @@ bool Parser100::parse( const std::vector<InputLine> & v )
 void Parser100::handle_const( const InputLine & l )
 {
     // format: const name value
-    if( l.tokens.size() < 3 )
+    if( l.tokens.size() != 3 )
         throw_error( "expected 3 arguments", l );
 
     const std::string & name    = l.tokens[1];
