@@ -67,7 +67,7 @@ bool Loader::add_to_script( const InputLine & l )
         if( l.tokens.size() < 2 )
             throw_error( "expected 2 arguments", l );
 
-        return include_file( remove_quotes( l.tokens[1] ), l );
+        return include_file( l.tokens[1], l );
     }
 
     script_.push_back( l );
