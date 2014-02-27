@@ -7,13 +7,13 @@ bool is_number_int( const std::string & arg )
     int sign_corr = 0;
 
     // check if sign is present
-    if( arg.compare( 0, 1, "-" ))
+    if( arg.compare( 0, 1, "-" ) == 0 )
     {
         sign_corr = 1;
     }
 
     // check if hex number
-    if( arg.compare( 0 + sign_corr, 2, "0x" ) )
+    if( arg.compare( 0 + sign_corr, 2, "0x" ) == 0 )
     {
         for( int i = 2 + sign_corr; i < ( int )arg.length(); ++i )
             {
