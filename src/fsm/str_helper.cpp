@@ -104,7 +104,7 @@ std::string StrHelper::to_string( const Action & l )
         s << act << " " << l.name_ << " " << to_string2( l.pars_ );
         break;
     case ACT_SIGNAL:
-        s << act << " " << l.name_;
+        s << act << " " << l.name_ << " " << to_string2( l.pars_ );
         break;
     case ACT_NEXT_STATE:
         s << act << " " << l.name_;
