@@ -3,9 +3,9 @@
 
 $ver 100
 
-$include "generic.fsm"
-
 finitestatemachine
+
+$include "generic.fsm"
 
 const GREET     "Hello World"
 const INT_VAL   27
@@ -15,6 +15,7 @@ state IDLE
     signal T_5
         a say GREET
         s response PI
+        s feedback TRUE
         ns IDLE
     signal T_20
         s drop_call
