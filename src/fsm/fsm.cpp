@@ -44,7 +44,7 @@ bool Fsm::clock()
 
 bool Fsm::has_state( const std::string & name )
 {
-    return states_.count( name ) == 0;
+    return states_.count( name ) > 0;
 }
 bool Fsm::add_state( const State & s )
 {
