@@ -39,6 +39,7 @@ private:
 
     void complete_current_state();
     void complete_current_signal_handler();
+    void complete_fsm( const InputLine & l );
 
 
     void throw_error( const std::string & msg, const InputLine & l );
@@ -69,6 +70,7 @@ private:
     MapStrToInt     const_int_;
     MapStrToDouble  const_double_;
 
+    std::string     start_state_;
 };
 
 NAMESPACE_FSM_END

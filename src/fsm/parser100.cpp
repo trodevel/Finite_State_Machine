@@ -108,6 +108,7 @@ bool Parser100::parse( const std::vector<InputLine> & v )
             }
             else if ( p0 == TOK_END )
             {
+                complete_fsm( l );
                 state = END;
             }
             else
@@ -130,6 +131,7 @@ bool Parser100::parse( const std::vector<InputLine> & v )
             else if ( p0 == TOK_END )
             {
                 complete_current_state();
+                complete_fsm( l );
                 state = END;
             }
             else
@@ -171,6 +173,7 @@ bool Parser100::parse( const std::vector<InputLine> & v )
             {
                 complete_current_signal_handler();
                 complete_current_state();
+                complete_fsm( l );
                 state = END;
             }
             else
@@ -228,10 +231,11 @@ void Parser100::handle_startstate( const InputLine & l )
     if( l.tokens.size() != 2 )
         throw_error( "expected 2 arguments", l );
 
-    bool b  = h_.set_start_state( l.tokens[1] );
+    // check if state is already defined
+    if( !start_state_.empty() )
+        throw_error( "start state is already defined", l );
 
-    if( !b )
-        throw_error( "cannot set start state, probably state is already defined", l );
+    start_state_    = l.tokens[1];
 }
 
 void Parser100::handle_state( const InputLine & l )
@@ -339,6 +343,18 @@ void Parser100::complete_current_state()
     h_.add_state( temp_state_ );
 
     temp_state_ = State();      // clear
+}
+
+void Parser100::complete_fsm( const InputLine & l )
+{
+    // check if state is already defined
+    if( start_state_.empty() )
+        throw_error( "start state is not defined", l );
+
+    bool b = h_.set_start_state( start_state_ );
+
+    if( !b )
+        throw_error( "cannot set start state, probably state doesn't exist", l );
 }
 
 /* ********************************************************************************************* */
