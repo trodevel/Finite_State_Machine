@@ -16,6 +16,7 @@
 #define TOK_S           "s"
 #define TOK_SEND_SIGNAL "sendsignal"
 #define TOK_SIGNAL      "signal"
+#define TOK_STARTSTATE  "startstate"
 #define TOK_STATE       "state"
 #define TOK_X           "x"
 
@@ -54,6 +55,7 @@ bool Parser100::is_cmd_supported( const std::string & cmd )
         s.insert( TOK_S );
         s.insert( TOK_SEND_SIGNAL );
         s.insert( TOK_SIGNAL );
+        s.insert( TOK_STARTSTATE );
         s.insert( TOK_STATE );
         s.insert( TOK_X );
     }
@@ -94,6 +96,10 @@ bool Parser100::parse( const std::vector<InputLine> & v )
             if( p0 == TOK_CONST )
             {
                 handle_const( l );
+            }
+            else if( p0 == TOK_STARTSTATE )
+            {
+                handle_startstate( l );
             }
             else if( p0 == TOK_STATE )
             {
@@ -214,6 +220,18 @@ void Parser100::handle_const( const InputLine & l )
     {
         add_const( name, val );
     }
+}
+
+void Parser100::handle_startstate( const InputLine & l )
+{
+    // format: startstate <state_name>
+    if( l.tokens.size() != 2 )
+        throw_error( "expected 2 arguments", l );
+
+    bool b  = h_.set_start_state( l.tokens[1] );
+
+    if( !b )
+        throw_error( "cannot set start state, probably state is already defined", l );
 }
 
 void Parser100::handle_state( const InputLine & l )

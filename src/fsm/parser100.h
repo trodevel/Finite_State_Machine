@@ -29,6 +29,7 @@ private:
     void handle_action( const InputLine & l );
     void handle_const( const InputLine & l );
     void handle_finitestatemachine( const InputLine & l );
+    void handle_startstate( const InputLine & l );
     void handle_state( const InputLine & l );
     void handle_signal_handler( const InputLine & l );
     void handle_nextstate( const InputLine & l );
