@@ -61,6 +61,10 @@ bool Fsm::set_start_state( const std::string & s )
     if( s.empty() )
         return false;
 
+    // check whether state exists
+    if( !has_state( s ) )
+        return false;
+
     start_state_    = s;
 
     return true;
