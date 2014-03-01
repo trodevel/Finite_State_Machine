@@ -52,7 +52,19 @@ bool Fsm::add_state( const State & s )
     return true;
 }
 
+bool Fsm::set_start_state( const std::string & s )
+{
+    // check if state is already defined
+    if( !start_state_.empty() )
+        return false;
 
+    if( s.empty() )
+        return false;
+
+    start_state_    = s;
+
+    return true;
+}
 
 NAMESPACE_FSM_END
 

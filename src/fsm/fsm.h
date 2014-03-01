@@ -38,12 +38,13 @@ public:
     // loading helpers
     bool has_state( const std::string & name );
     bool add_state( const State & s );
+    bool set_start_state( const std::string & s );
 
 private:
 
     MapStrToState   states_;
 
-
+    std::string     start_state_;
 };
 
 
