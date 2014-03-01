@@ -65,7 +65,7 @@ std::string StrHelper::to_string( const Fsm & l )
     std::ostringstream s;
 
     s << "fsm\n"
-            << "start state = " << l.start_state_ << "\n"
+            << "startstate '" << l.start_state_ << "'\n"
             << "states = " << l.states_.size() << "\n"
             << to_string2( l.states_ )
             << "\n";
