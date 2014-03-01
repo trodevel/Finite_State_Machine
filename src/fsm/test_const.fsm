@@ -11,6 +11,8 @@ const GREET     "Hello World"
 const INT_VAL   27
 const PI        3.14
 
+startstate IDLE
+
 state IDLE
     signal T_5
         a say GREET
