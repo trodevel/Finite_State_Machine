@@ -3,6 +3,8 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 
+#include <iostream>             // cout
+
 #include "loader.h"
 #include "parser_factory.h"     // ParserFactory
 #include "fsm.h"                // Fsm
@@ -60,7 +62,8 @@ int main( int argc, const char** argv )
 
     printf( "parsed - OK\n" );
 
-    printf( "DEBUG:\n%s\n", fsm::StrHelper::to_string( fsm ).c_str() );
+    std::cout << "DEBUG:\n" << fsm::StrHelper::to_string( fsm ) << "\n";
+    //printf( "DEBUG:\n%s\n", fsm::StrHelper::to_string( fsm ).c_str() );
 
     return 0;
 }
