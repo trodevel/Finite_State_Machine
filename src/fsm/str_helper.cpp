@@ -8,41 +8,9 @@
 #include "parameter.h"              // Param
 #include "data_types.h"             // Action, SignalHandler, State
 #include "fsm.h"                    // Fsm
+#include "str_helper_t.h"           // to_string2
 
 NAMESPACE_FSM_START
-
-template <class T>
-std::string to_string2( const std::vector<T> & l )
-{
-    std::ostringstream s;
-
-    typename std::vector<T>::const_iterator it = l.begin();
-    typename std::vector<T>::const_iterator it_end = l.end();
-
-    for( ; it != it_end; ++it )
-    {
-        s << StrHelper::to_string( *it ) << " ";
-    }
-
-    return s.str();
-}
-
-template <class T, class V>
-std::string to_string2( const std::map<T,V> & l )
-{
-    std::ostringstream s;
-
-    typename std::map<T,V>::const_iterator it = l.begin();
-    typename std::map<T,V>::const_iterator it_end = l.end();
-
-    for( ; it != it_end; ++it )
-    {
-        s << StrHelper::to_string( (*it).second ) << " ";
-    }
-
-    return s.str();
-}
-
 
 std::string StrHelper::to_string( const InputLine &d )
 {
