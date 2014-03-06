@@ -10,6 +10,44 @@
 #include "fsm.h"                // Fsm
 #include "str_helper.h"         // StrHelper
 
+#include "str_helper_t.h"       // to_string2
+#include "fsm_callback_i.h"     // FsmCallbackI
+class Callback: public fsm::FsmCallbackI
+{
+public:
+    bool send_signal( const std::string & name, std::vector<fsm::Param> pars );
+    bool call_action( const std::string & name, std::vector<fsm::Param> pars );
+
+};
+
+bool Callback::send_signal( const std::string & name, std::vector<fsm::Param> pars )
+{
+    std::cout << "recv signal '" << name << "' { " << fsm::to_string2( pars ) << "}" << std::endl;
+    return true;
+}
+bool Callback::call_action( const std::string & name, std::vector<fsm::Param> pars )
+{
+    std::cout << "call '" << name << "' ( " << fsm::to_string2( pars ) << ")" << std::endl;
+    return true;
+}
+
+void control( fsm::Fsm & fsm )
+{
+    std::cout << "type exit for exit, s - send signal\n";
+    while( true )
+    {
+        std::string inp;
+
+        std::cout << "$ ";
+        std::cin >> inp;
+
+        if( inp == "exit" || inp == "quit" )
+            break;
+    }
+
+    std::cout << "exiting" << std::endl;
+}
+
 int main( int argc, const char** argv )
 {
     printf( "Hello, world!\n" );
@@ -64,6 +102,10 @@ int main( int argc, const char** argv )
 
     std::cout << "DEBUG:\n" << fsm::StrHelper::to_string( fsm ) << "\n";
     //printf( "DEBUG:\n%s\n", fsm::StrHelper::to_string( fsm ).c_str() );
+
+    Callback cb;
+
+    fsm.set_callback_if( & cb );
 
     return 0;
 }
