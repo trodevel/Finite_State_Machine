@@ -10,6 +10,8 @@
 #include "fsm.h"                // Fsm
 #include "str_helper.h"         // StrHelper
 
+#include "../utils/tokenizer.h" // tokenize_to_vector
+
 #include "str_helper_t.h"       // to_string2
 #include "fsm_callback_i.h"     // FsmCallbackI
 class Callback: public fsm::FsmCallbackI
@@ -33,19 +35,66 @@ bool Callback::call_action( const std::string & name, std::vector<fsm::Param> pa
 
 void control( fsm::Fsm & fsm )
 {
-    std::cout << "type exit for exit, s - send signal\n";
+    std::cout << "type exit or quit to quit: " << std::endl;
+    std::cout << "supported commands:\n"
+            << "c    - send clock impulse\n"
+            << "test - send test signal\n"
+            << "s <name> [<par>]- send signal 'name'\n"
+            << std::endl;
+
+    std::string input;
+
     while( true )
     {
-        std::string inp;
+        //std::cout << "your command: " << std::endl;
 
-        std::cout << "$ ";
-        std::cin >> inp;
+        std::getline( std::cin, input );
+        std::cout << "command: " << input << std::endl;
 
-        if( inp == "exit" || inp == "quit" )
+        std::vector< std::string > pars;
+
+        tokenize_to_vector( pars, input, " " );
+
+        if( pars.empty() )
+            continue;
+
+        const std::string & p0 = pars[0];
+
+        if( p0 == "exit" || p0 == "quit" )
             break;
-    }
+        else if( p0 == "test" )
+        {
+        }
+        else if( p0 == "c" )
+        {
+            fsm.clock();
+        }
+        else if( p0 == "s" )
+        {
+            if( pars.size() < 2 )
+            {
 
-    std::cout << "exiting" << std::endl;
+                std::cout << "ERROR: need signal name" << std::endl;
+                continue;
+            }
+
+            const std::string name = pars[1];
+
+            //const std::string p1 = pars[1];
+
+            std::vector<fsm::Param> pars2;
+
+            for( int i = 2; i < pars.size(); ++i )
+            {
+                //fsm::Param p = str_to_param( pars[i] );
+                //pars2.push_back( p );
+            }
+
+            fsm.send_signal( name, pars2 );
+        }
+    };
+
+    std::cout << "exiting ..." << std::endl;
 }
 
 int main( int argc, const char** argv )
@@ -106,6 +155,8 @@ int main( int argc, const char** argv )
     Callback cb;
 
     fsm.set_callback_if( & cb );
+
+    control( fsm );
 
     return 0;
 }
