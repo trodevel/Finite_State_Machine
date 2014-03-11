@@ -33,6 +33,28 @@ bool Callback::call_action( const std::string & name, std::vector<fsm::Param> pa
     return true;
 }
 
+#include "../utils/number_format.h"  // is_number_int
+
+fsm::Param str_to_param( const std::string & s )
+{
+    if( is_number_int( s ) )
+    {
+        fsm::Param res( fsm::PARTP_INT, s );
+
+        return res;
+    }
+    else if( is_number_float( s ) )
+    {
+        fsm::Param res( fsm::PARTP_FLOAT, s );
+
+        return res;
+    }
+
+    fsm::Param res( fsm::PARTP_STR, s );
+
+    return res;
+}
+
 void control( fsm::Fsm & fsm )
 {
     std::cout << "type exit or quit to quit: " << std::endl;
@@ -84,10 +106,10 @@ void control( fsm::Fsm & fsm )
 
             std::vector<fsm::Param> pars2;
 
-            for( int i = 2; i < pars.size(); ++i )
+            for( int i = 2; i < (int)pars.size(); ++i )
             {
-                //fsm::Param p = str_to_param( pars[i] );
-                //pars2.push_back( p );
+                fsm::Param p = str_to_param( pars[i] );
+                pars2.push_back( p );
             }
 
             fsm.send_signal( name, pars2 );
@@ -155,6 +177,15 @@ int main( int argc, const char** argv )
     Callback cb;
 
     fsm.set_callback_if( & cb );
+
+    bool check = fsm.check();
+
+    if( check == false )
+    {
+        std::cout << "ERROR: check failed - '" + fsm.get_error_message() + "'\n";
+
+        return 0;
+    }
 
     control( fsm );
 
