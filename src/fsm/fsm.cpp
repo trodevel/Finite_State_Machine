@@ -27,6 +27,30 @@ bool Fsm::set_callback_if( FsmCallbackI * callback )
     return false;
 }
 
+bool Fsm::check()
+{
+    if( start_state_.empty() )
+    {
+        set_err_message( "start_state is empty" );
+        return false;
+    }
+
+    // check whether state exists
+    if( !has_state( start_state_ ) )
+    {
+        set_err_message( std::string( "start_state doesn't exist - " ) + start_state_ );
+        return false;
+    }
+
+    return true;
+}
+
+const std::string & Fsm::get_error_message() const
+{
+    return err_message_;
+}
+
+
 // operation
 bool Fsm::send_signal( const std::string & name, std::vector<Param> pars )
 {
@@ -34,7 +58,15 @@ bool Fsm::send_signal( const std::string & name, std::vector<Param> pars )
 }
 bool Fsm::start()
 {
-    return false;
+    curr_state_ = states_.find( start_state_ );
+
+    if( curr_state_ == states_.end() )
+    {
+        set_err_message( "start: cannot find start state" );
+        return false;
+    }
+
+    return true;
 }
 
 bool Fsm::clock()
@@ -68,6 +100,11 @@ bool Fsm::set_start_state( const std::string & s )
     start_state_    = s;
 
     return true;
+}
+
+void Fsm::set_err_message( const std::string & s )
+{
+    err_message_    = s;
 }
 
 NAMESPACE_FSM_END

@@ -27,6 +27,8 @@ public:
     bool load( const std::string & filename );
     bool load_from_str( const std::string & str );
     bool set_callback_if( FsmCallbackI * callback );
+    bool check();
+    const std::string & get_error_message() const;
 
     // operation
     bool send_signal( const std::string & name, std::vector<Param> pars );
@@ -41,10 +43,17 @@ public:
     bool set_start_state( const std::string & s );
 
 private:
+    void set_err_message( const std::string & s );
+
+private:
 
     MapStrToState   states_;
 
     std::string     start_state_;
+
+    MapStrToState::const_iterator   curr_state_;
+
+    std::string     err_message_;
 };
 
 
