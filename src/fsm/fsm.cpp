@@ -51,9 +51,30 @@ const std::string & Fsm::get_error_message() const
 }
 
 
+bool Fsm::execute_action( const Action & a )
+{
+    return true;
+}
+
 // operation
 bool Fsm::send_signal( const std::string & name, std::vector<Param> pars )
 {
+    State::MapSignalToHandler::const_iterator it_h      = ( *curr_state_ ).second.map_.find( name );
+    State::MapSignalToHandler::const_iterator it_end    = ( *curr_state_ ).second.map_.end();
+
+    if( it_h == it_end )
+    {
+        printf( "DEBUG: signal %s is not accepted in current state (%s)\n", name.c_str(), (*curr_state_).second.name_.c_str() );
+        return true;
+    }
+
+    const SignalHandler & h = ( *it_h ).second;
+
+    for( const Action & i : h.actions_ )
+    {
+        bool b = execute_action( i );
+    }
+
     return false;
 }
 bool Fsm::start()

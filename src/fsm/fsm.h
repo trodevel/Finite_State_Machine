@@ -45,6 +45,8 @@ public:
 private:
     void set_err_message( const std::string & s );
 
+    bool execute_action( const Action & a );
+
 private:
 
     MapStrToState   states_;
