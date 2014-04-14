@@ -1,8 +1,6 @@
+// $Id: dummy_logger.cpp 282 2013-11-18 22:38:28Z serge $
+
 /*
-
-Detects format of numbers in strings.
-
-Copyright (C) 2014 Sergey Kolevatov
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,16 +17,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Id: number_format.h 376 2014-04-14 23:01:06Z serge $
+#include "dummy_logger.h"       // self
+#include "sprintf.h"            // spf_2
+#include <iostream>             // cout
 
-// E110
+void dummy_log( const int level, const char *module_name, const char *fmt, ... )
+{
+    std::string res;
+    va_list ap;
+    va_start( ap, fmt );
 
-#ifndef NUMBER_FORMAT_H
-#define NUMBER_FORMAT_H
+    spf_2( res, fmt, ap );
+    va_end( ap );
 
-#include <string>
+    std::cout << module_name << ": " << res << std::endl;
+}
 
-bool is_number_int( const std::string & arg );
-bool is_number_float( const std::string & arg );
-
-#endif // NUMBER_FORMAT_H

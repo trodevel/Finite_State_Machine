@@ -1,14 +1,8 @@
-// dummy test file
-// E130
-
-#include "number_format.h"
-
 #include <cstdio>
-#include <string>
 
-int main( int argc, const char** argv )
+int main()
 {
-    printf( "Hello, world!\n" );
+    printf( "Hello, world\n" );
 
     return 0;
 }
