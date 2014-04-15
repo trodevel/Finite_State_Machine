@@ -1,6 +1,6 @@
 /*
 
-Dummy logger.
+Random string generator.
 
 Copyright (C) 2014 Sergey Kolevatov
 
@@ -19,21 +19,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Id: dummy_logger.cpp 386 2014-04-15 16:26:53Z serge $
+// $Id: gen_random_string.h 391 2014-04-15 23:28:32Z serge $
 
-#include "dummy_logger.h"       // self
-#include "vformat.h"            // vformat
-#include <iostream>             // cout
 
-void dummy_log( const int level, const char *module_name, const char *fmt, ... )
-{
-    std::string res;
-    va_list ap;
-    va_start( ap, fmt );
+#ifndef GEN_RANDOM_STRING_H
+#define GEN_RANDOM_STRING_H
 
-    res = vformat( fmt, ap );
-    va_end( ap );
+#include <string>
 
-    std::cout << module_name << ": " << res << std::endl;
-}
+// http://stackoverflow.com/questions/440133/how-do-i-create-a-random-alpha-numeric-string-in-c
+std::string gen_random_string( size_t length );
 
+#endif // GEN_RANDOM_STRING_H

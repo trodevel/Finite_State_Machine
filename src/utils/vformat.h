@@ -1,6 +1,8 @@
 /*
 
-Dummy logger.
+printf for std::string.
+
+http://stackoverflow.com/questions/69738/c-how-to-get-fprintf-results-as-a-stdstring-w-o-sprintf#69911
 
 Copyright (C) 2014 Sergey Kolevatov
 
@@ -19,21 +21,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Id: dummy_logger.cpp 386 2014-04-15 16:26:53Z serge $
+// $Id: vformat.h 384 2014-04-15 16:21:07Z serge $
 
-#include "dummy_logger.h"       // self
-#include "vformat.h"            // vformat
-#include <iostream>             // cout
+#ifndef VFORMAT_H
+#define VFORMAT_H
 
-void dummy_log( const int level, const char *module_name, const char *fmt, ... )
-{
-    std::string res;
-    va_list ap;
-    va_start( ap, fmt );
+#include <string>               // std::string
+#include <stdarg.h>             // va_list stuff
 
-    res = vformat( fmt, ap );
-    va_end( ap );
+std::string vformat( const char *fmt, va_list ap );
+std::string vformat_2( const char* fmt, ... );
 
-    std::cout << module_name << ": " << res << std::endl;
-}
-
+#endif // VFORMAT_H
