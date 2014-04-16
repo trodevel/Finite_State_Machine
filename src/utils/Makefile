@@ -82,7 +82,7 @@ EXE=
 
 #vpath %.cpp .
 
-SRCC = dummy_logger.cpp sprintf.cpp number_format.cpp vformat.cpp gen_random_string.cpp
+SRCC = dummy_logger.cpp sprintf.cpp number_format.cpp vformat.cpp gen_random_string.cpp HTTPDownloader.cpp
 OBJS = $(patsubst %.cpp,$(OBJDIR)/%.o,$(SRCC))
 
 all: static
