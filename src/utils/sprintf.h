@@ -1,5 +1,15 @@
-// $Id: sprintf.h 282 2013-11-18 22:38:28Z serge $
-// @url http://stackoverflow.com/questions/2342162/stdstring-formatting-like-sprintf
+/*
+
+stdstring-formatting-like-sprintf
+
+LICENSE: cc by-sa 3.0 with attribution required
+
+source: http://stackoverflow.com/questions/2342162/stdstring-formatting-like-sprintf
+author: http://stackoverflow.com/users/627042
+
+*/
+
+// $Id: sprintf.h 441 2014-04-23 23:10:16Z serge $
 
 #ifndef SPRINTF_H
 #define SPRINTF_H

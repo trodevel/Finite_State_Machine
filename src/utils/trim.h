@@ -1,4 +1,15 @@
-// source: http://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring
+/*
+
+String trimmer.
+
+LICENSE: cc by-sa 3.0 with attribution required
+
+source: http://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring
+author: http://stackoverflow.com/users/13430/evan-teran
+
+*/
+
+//
 // DC18
 
 
